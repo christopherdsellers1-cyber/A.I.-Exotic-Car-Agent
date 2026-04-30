@@ -1,0 +1,13 @@
+name: Porsche Equity Hunter
+on:
+  schedule:
+    - cron: '0 * * * *' # This runs the search every hour, 24/7
+  workflow_dispatch: # Allows you to run it manually
+
+jobs:
+  hunt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Scraper
+        run: python scraper.py
