@@ -1,14 +1,35 @@
-import sqlite3
+import os
 import requests
-# The AI will add the scraping logic here for Classic.com and others.
+import pandas as pd
 
-def hunt_for_porsches():
-    # 1. Check the 'hit_list.csv' for targets
-    # 2. Scrape the live market
-    # 3. If Model in Hit List and Price < Target:
-    #    4. Check SQLite Database: Have I seen this VIN before?
-    #    5. If New: Send Telegram Alert + Save to Database
-    print("Agent is hunting...")
+# 1. Load Secrets from GitHub Vault
+TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
+
+def send_alert(message):
+    url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
+    payload = {"chat_id": CHAT_ID, "text": message, "parse_mode": "Markdown"}
+    requests.post(url, json=payload)
+
+def hunt():
+    # Load your Hit List
+    try:
+        hit_list = pd.read_csv('hit_list.csv')
+    except Exception as e:
+        print(f"Error loading hit_list: {e}")
+        return
+
+    # MOCK SEARCH LOGIC (To be expanded with Scraper_Logic.py)
+    # This is where the AI 'scans' the sites you listed in requirements.md
+    print("Scanning Bring a Trailer, Cars & Bids, and Classic.com...")
+    
+    # Example Logic: Finding a match
+    # For now, let's send a success message to prove the 'Phone Line' works.
+    message = "🎯 **Porsche Hunter System Online**\nMonitoring for Clean Title GT3/RS/GT2 models. All systems operational in Akron."
+    send_alert(message)
 
 if __name__ == "__main__":
-    hunt_for_porsches()
+    if TOKEN and CHAT_ID:
+        hunt()
+    else:
+        print("Missing Telegram Credentials in GitHub Secrets.")
