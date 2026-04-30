@@ -1,1 +1,13 @@
-
+  {
+  "valuation_logic": {
+    "991.2_GT3_Manual": "+$15,000 premium",
+    "PCCB_Brakes": "+$8,000 premium",
+    "Carbon_Buckets": "+$10,000 premium",
+    "PTS_Color": "+20% over base value"
+  },
+  "alert_triggers": {
+    "price_drop": "10%",
+    "new_listing_under_avg": true,
+    "salvage_title_with_clean_interior": true
+  }
+}  
