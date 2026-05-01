@@ -1,42 +1,308 @@
-{
-  "Porsche 911 GT3 (991)": {
-    "shortcuts": "Front lift. PTS. Sport Chrono. Manual 991.2.",
-    "strike_price": 185000,
-    "target_mileage": 15000
-  },
-  "Porsche Cayenne (3rd Gen)": {
-    "shortcuts": "Sport Chrono. GTS/Turbo. PCCB. PTS.",
-    "strike_price": 92000,
-    "target_mileage": 30000
-  },
-  "Mercedes-AMG GT Series": {
-    "shortcuts": "GTR, Black Series, GTC 50 collectible. 2016-2017.",
-    "strike_price": 115000,
-    "target_mileage": 20000
-  },
-  "BMW X5 M (G05)": {
-    "shortcuts": "Competition. 2020-2023. Driver/Climate. Individual.",
-    "strike_price": 82000,
-    "target_mileage": 25000
-  },
-  "Lamborghini Huracan": {
-    "shortcuts": "Front lift. Ad Personam. Performante/STO/Sterrato.",
-    "strike_price": 210000,
-    "target_mileage": 12000
-  },
-  "Ferrari 458": {
-    "shortcuts": "Speciale & Aperta collectible. Tailor Made.",
-    "strike_price": 245000,
-    "target_mileage": 10000
-  },
-  "McLaren 720S": {
-    "shortcuts": "MSO Bespoke. Carbon. 765LT collectible.",
-    "strike_price": 195000,
-    "target_mileage": 12000
-  },
-  "Audi R8 (2nd Gen)": {
-    "shortcuts": "2017-2018 Plus or 2020+ Performance. Exclusive. GT collectible.",
-    "strike_price": 135000,
-    "target_mileage": 18000
-  }
-}
+Acura NSX
+Type S. Carbon Fiber Sport. Carbon ceramic.
+
+Aston Martin DBS (2nd Gen)
+Manual. Ultimate/Carbon Edition. Carbon-ceramic maintained.
+
+Aston Martin DBS Superleggera
+50th/007/770 Ultimate. 2019-2022. Q colors.
+
+Aston Martin DBX
+DBX 707. 2021-2022. Carbon Fiber. Q colors.
+
+Aston Martin Vanquish
+2014-2016+. Vanquish S. Q colors.
+
+Aston Martin Vantage (1st Gen)
+Manual most desirable. V12/S/GT/GTS collectible. Q spec.
+
+Aston Martin Vantage (3rd Gen)
+V12 appreciates most. AMR & F1 collectible. Manual.
+
+Audi R8 (1st Gen)
+V10. Coupe. Manual best. 2014+ S-Tronic. GT/Competition.
+
+Audi R8 (2nd Gen)
+2017-2018 Plus or 2020+ Performance. Exclusive. GT collectible.
+
+Audi RS5 (1st)
+Sport Diff & DRC. 20-Inch Rotor. 2012-2015.
+
+Audi RS5 (2nd)
+Competition. 2019+. Panther Edition.
+
+Audi RS6
+Black/Carbon Optic. Avant Performance. 2019-2022. Exclusive.
+
+Audi RS7
+Performance Package. 2021-2022+.
+
+Audi RSQ8
+2020-2021. Fully loaded. Black optics/carbon.
+
+Audi S7
+Prestige. 2020-2022+.
+
+Audi S8 (D4)
+2016-2018. S8 Plus. Fully loaded.
+
+Bentley Bentayga
+Mulliner. 21-22 wheels. 2017-2019 W12/V8.
+
+Bentley Continental GT (2nd)
+Mulliner. GT3-R. 2017-2018 Speed/Supersports.
+
+Bentley Continental GT (3rd)
+Mulliner/Touring. GT Speed.
+
+Bentley Flying Spur (2nd)
+2016-2017 W12. Mulliner. Naim. Universal colors.
+
+Bentley Flying Spur (3rd)
+Mulliner. Speed/Speed Edition 12.
+
+BMW Alpina B7
+Executive Lounge. B&W Diamond. 2017-2019.
+
+BMW Alpina XB7
+Alpina Blue/Green. B&W. Well-maintained.
+
+BMW i8
+Harman Kardon. 2015-2019.
+
+BMW M2 (F87)
+Executive/Driver. Carbon. CS/Competition.
+
+BMW M3 (E90/E92)
+2009+. Competition & carbon roof. Manual. Rod bearings.
+
+BMW M3 (F80)/M4 (F82)
+Adaptive. Individual. GTS/CS collectible. 2015-2020.
+
+BMW M5 (F10)
+Executive/Assistance. Competition/30 Jahre. 2013-2016.
+
+BMW M5 (F90)
+CS/Edition 35/Competition. Executive. 2018-2021.
+
+BMW M6 (F12/F13/F06)
+Competition. 2012-2019. DCT/Carbon Ceramic.
+
+BMW M8
+Competition. Individual. M Carbon Exterior.
+
+BMW X5 M (F85)
+Executive. 2018 refinements. Individual.
+
+BMW X5 M (G05)
+Competition. 2020-2023. Driver/Climate. Individual.
+
+BMW X6 M (F96)
+Competition. Driver/Executive. 2024 S68.
+
+Cadillac Escalade (5th)
+Escalade V. Premium Luxury/Sport Platinum. Super Cruise.
+
+Chevrolet Corvette C6
+Z07 Ultimate. CFZ Carbon. Centennial/60th.
+
+Chevrolet Corvette C7
+ZR1 collector. Z07 Performance. Premium. Magnetic/ceramic.
+
+Dodge Ram TRX
+Level 2. Final/special trims. 2021-2024.
+
+Dodge Viper (4th)
+ACR. Limited editions (Voodoo/1:33/Final).
+
+Dodge Viper (5th)
+ACR Extreme. Track. Premium/carbon. Adjustable/ceramic.
+
+Ferrari 360 Modena
+2002+. Daytona seats. Manual. Belt service.
+
+Ferrari 458
+Speciale & Aperta collectible. Tailor Made.
+
+Ferrari 488
+Front lift. Tailor Made. Pista collectible.
+
+Ferrari 812
+Tailor Made. Competizione collectible.
+
+Ferrari F12
+Front lift. TDF collectible. 70th Anniversary.
+
+Ferrari F430
+Carbon. Ceramic brakes. Scuderia collectible.
+
+Ferrari F8
+Carbon. Tailor Made. 2020-2023.
+
+Ferrari GTC4 Lusso
+Carbon. Panoramic. 2017-2020. Tailor Made.
+
+Ferrari Roma
+ADAS. Carbon exterior. Tailor Made.
+
+Ferrari SF90
+Tailor Made. SF90 XX. Assetto Fiorano.
+
+Ford GT (2005-2006)
+All four options. 2006 Heritage. Original. Recalls done.
+
+Ford Mustang GT350
+Technology/Track. GT350R/Heritage.
+
+Ford Raptor (2nd)
+802A/Technology. 2019 Fox Live Valve. Beadlock-capable.
+
+Jaguar F-Pace SVR
+Black Exterior/Dynamic Handling. 2019-2021. 22-inch forged.
+
+Jaguar F-Type
+Project 7/SVR/75th/ZP collectible. V8 2014-2020 R/SVR. Active exhaust.
+
+Lamborghini Aventador
+Front lift. Ad Personam. SV & SVJ collectible.
+
+Lamborghini Gallardo
+Manual most sought. 2009+ facelift. Superleggera collectible.
+
+Lamborghini Huracan
+Front lift. Ad Personam. Performante/STO/Sterrato.
+
+Lamborghini Murciélago
+LP640 manual rare. 2007-2010. SV premium.
+
+Lamborghini Urus
+Ad Personam. Sportivo. Performante. 2019-2021.
+
+Land Rover Defender (2nd)
+75th Limited. Explorer Pack. Technology Pack.
+
+Lexus GS F
+Mark Levinson/Carbon. 2016-2020. 10th Anniv/Black Line.
+
+Lexus IS-F
+2012-2013. Mark Levinson. Red Leather. LSD.
+
+Lexus LC 500
+Performance. Inspiration Series.
+
+Lexus RC F
+2020. Performance (carbon roof/wing). Track/Fuji Edition.
+
+Maserati GranTurismo MC
+2014-2018. MC Stradale.
+
+Maserati Quattroporte (5th)
+2009-2012 ZF 6-speed. S/Sport GT S. Skyhook. 20-inch. Avoid DuoSelect.
+
+McLaren 570S
+Adaptive. MSO. 600LT collectible. 2016-2020.
+
+McLaren 720S
+MSO Bespoke. Carbon. 765LT collectible.
+
+McLaren MP4-12C
+2013-2014 IRIS. Carbon package. Service history.
+
+Mercedes-AMG C63 (W204)
+Dev Package P31. 2012-2014 facelift. M156 maintenance.
+
+Mercedes-AMG C63 (W205)
+Ride Control. Designo colors. C63 S/Edition 1.
+
+Mercedes-AMG E63 (Current)
+Final Edition. 2018-2019 E63 S.
+
+Mercedes-AMG E63 (W212)
+Performance Package. 2014-2016 S 4MATIC.
+
+Mercedes-AMG G63 (1st)
+Exclusive/Designo. Night. Carbon-ceramic. B&O.
+
+Mercedes-AMG G63 (2nd)
+G63 4x4² collectible. 2019+.
+
+Mercedes-AMG GLE 63 S
+Performance Studio. Designo. 2016-2017.
+
+Mercedes-AMG GLS63
+Final/Designo Exclusive. Night. 22-inch forged.
+
+Mercedes-AMG GT 4-Door
+Dynamic Plus. GT63 S. Manufaktur Paint.
+
+Mercedes-AMG GT Series
+GTR, Black Series, GTC 50 collectible. 2016-2017.
+
+Mercedes-AMG S63 (W222)
+Night Package. 2018 facelift 4.0L.
+
+Mercedes-AMG S63 (W223)
+Ceramic brakes. Executive Rear Seat.
+
+Mercedes-AMG SL63/SL65 (R231)
+2017+ facelift. AMG Performance. ABC caution.
+
+Mercedes-Benz CLK63 Black
+Mars Red/Arctic White. Service. Inspect tires/brakes.
+
+Mercedes-Benz CLS63 (2nd)
+S trim. Performance. 2015-2018.
+
+Nissan GT-R
+NISMO. 2009-2016. Carbon. Unique colors.
+
+Porsche 718 Cayman GT4
+PCCB. Front lift. Carbon buckets. PTS.
+
+Porsche 718 Cayman GT4 RS
+Weissach. Magnesium wheels. Carbon buckets.
+
+Porsche 911 GT3 (991)
+Front lift. PTS. Sport Chrono. Manual 991.2.
+
+Porsche 911 GT3 RS (991)
+Front lift. PTS. Weissach 991.2.
+
+Porsche 911 Turbo (991)
+Turbo S or 50th Anniversary. PTS colors. PCCB.
+
+Porsche 911 Turbo (992)
+Turbo S or 50th. PTS. PCCB. Porsche service.
+
+Porsche 911 Turbo (996)
+X50 Performance Package. Turbo S for PCCB. Manual transmission. 2002+.
+
+Porsche 911 Turbo (997)
+997.2 (2010-2013) PDK. Turbo S (2011-2013). Manual desirable.
+
+Porsche Cayenne (2nd Gen)
+Sport Chrono, PDCC, air. 2015-2016.
+
+Porsche Cayenne (3rd Gen)
+Sport Chrono. GTS/Turbo. PCCB. PTS.
+
+Porsche Macan GTS/Turbo
+Premium Plus. 2022+ GTS. Sport exhaust.
+
+Porsche Panamera (971)
+Sport Chrono. PCCB. PTS. CPO.
+
+Range Rover Sport SVR
+SVR Carbon Fiber. Adaptive Dynamics. 2015-2021.
+
+Rolls-Royce Cullinan
+Black Badge. 2019-2022. Bespoke features.
+
+Rolls-Royce Dawn
+Black Badge. 2016-2017. Bespoke Paint.
+
+Rolls-Royce Ghost
+Black Badge. 2009-2013. Bespoke.
+
+Rolls-Royce Wraith
+Black Badge. 2019-2021. Bespoke Audio/Starlight.
