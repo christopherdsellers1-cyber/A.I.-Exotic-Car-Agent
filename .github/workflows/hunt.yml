@@ -15,8 +15,9 @@ jobs:
           python-version: '3.9'
       - name: Install Dependencies
         run: pip install pandas requests
-      - name: Run Scraper
+     - name: Run Scraper
         env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'  # This kills the warning
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python main_agent.py
