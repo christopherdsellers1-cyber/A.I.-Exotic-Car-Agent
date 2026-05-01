@@ -1,1 +1,42 @@
-
+{
+  "Porsche 911 GT3 (991)": {
+    "shortcuts": "Front lift. PTS. Sport Chrono. Manual 991.2.",
+    "strike_price": 185000,
+    "target_mileage": 15000
+  },
+  "Porsche Cayenne (3rd Gen)": {
+    "shortcuts": "Sport Chrono. GTS/Turbo. PCCB. PTS.",
+    "strike_price": 92000,
+    "target_mileage": 30000
+  },
+  "Mercedes-AMG GT Series": {
+    "shortcuts": "GTR, Black Series, GTC 50 collectible. 2016-2017.",
+    "strike_price": 115000,
+    "target_mileage": 20000
+  },
+  "BMW X5 M (G05)": {
+    "shortcuts": "Competition. 2020-2023. Driver/Climate. Individual.",
+    "strike_price": 82000,
+    "target_mileage": 25000
+  },
+  "Lamborghini Huracan": {
+    "shortcuts": "Front lift. Ad Personam. Performante/STO/Sterrato.",
+    "strike_price": 210000,
+    "target_mileage": 12000
+  },
+  "Ferrari 458": {
+    "shortcuts": "Speciale & Aperta collectible. Tailor Made.",
+    "strike_price": 245000,
+    "target_mileage": 10000
+  },
+  "McLaren 720S": {
+    "shortcuts": "MSO Bespoke. Carbon. 765LT collectible.",
+    "strike_price": 195000,
+    "target_mileage": 12000
+  },
+  "Audi R8 (2nd Gen)": {
+    "shortcuts": "2017-2018 Plus or 2020+ Performance. Exclusive. GT collectible.",
+    "strike_price": 135000,
+    "target_mileage": 18000
+  }
+}
