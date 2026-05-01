@@ -1,14 +1,15 @@
-import json
+def analyze_listing(listing, db):
+    model_name = listing['full_name']
+    if model_name in db:
+        target = db[model_name]
+        
+        # LOGIC 1: Price Check
+        price_gap = target['strike_price'] - listing['price']
+        
+        # LOGIC 2: Keyword Shortcut Check (from your HTML)
+        has_keywords = any(word.lower() in listing['description'].lower() 
+                          for word in target['shortcuts'].split())
 
-def get_expert_criteria(make_model):
-    with open('models_db.json', 'r') as f:
-        db = json.load(f)
-    # This finds the "Shortcut" from your HTML file
-    return db.get(make_model, "No specific shortcuts found.")
-
-def scan_and_filter(listing):
-    criteria = get_expert_criteria(f"{listing['make']} {listing['model']}")
-    print(f"Checking against Expert Brain: {criteria}")
-    
-    # RUTHLESS FILTER: Only alert if it hits your specific "Brain" criteria
-    # Example: If the Brain says 'PCCB' and the car doesn't have it, we skip.
+        if price_gap > 0 and has_keywords:
+            return f"🔥 DEAL ALERT: {model_name} is ${price_gap} BELOW strike price!"
+    return None
