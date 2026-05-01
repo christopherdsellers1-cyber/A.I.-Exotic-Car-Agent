@@ -1,4 +1,5 @@
 name: Porsche Equity Hunter
+
 on:
   schedule:
     - cron: '0 * * * *' 
@@ -7,17 +8,23 @@ on:
 jobs:
   hunt:
     runs-on: ubuntu-latest
+    env:
+      # This line kills the yellow Node.js warnings
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.11'
+
       - name: Install Dependencies
         run: pip install pandas requests
-     - name: Run Scraper
-        env:
-          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'  # This kills the warning
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      - name: Run Main Agent
         run: python main_agent.py
