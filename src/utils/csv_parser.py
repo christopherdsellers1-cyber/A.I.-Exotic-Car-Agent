@@ -17,8 +17,19 @@ class HitListEntry:
     @property
     def year_range(self) -> tuple:
         """Parse year range into (start, end) tuple."""
-        parts = self.years.split('-')
-        return (int(parts[0]), int(parts[1]) if len(parts) > 1 else int(parts[0]))
+        # Handle formats like "2014-2016", "2008", "2022+", "2023+"
+        if '+' in self.years:
+            # Format: "2022+" means 2022 to current/future
+            year = int(self.years.replace('+', ''))
+            return (year, 2030)  # Use 2030 as upper bound
+        elif '-' in self.years:
+            # Format: "2014-2016"
+            parts = self.years.split('-')
+            return (int(parts[0]), int(parts[1]))
+        else:
+            # Single year
+            year = int(self.years)
+            return (year, year)
 
     @property
     def target_price_value(self) -> float:

@@ -57,8 +57,14 @@ class Config:
     def _load_app_config(self) -> Dict[str, Any]:
         """Load application configuration from CSV/MD files."""
         try:
+            # Check both data/ and root directory for files
             hit_list_path = self.data_dir / 'hit_list.csv'
+            if not hit_list_path.exists():
+                hit_list_path = self.base_dir / 'hit_list.csv'
+
             requirements_path = self.data_dir / 'requirements.md'
+            if not requirements_path.exists():
+                requirements_path = self.base_dir / 'requirements.md'
 
             if not hit_list_path.exists():
                 logger.warning(f"Hit list file not found: {hit_list_path}")
