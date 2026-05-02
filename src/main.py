@@ -13,6 +13,10 @@ from src.storage.models import Listing, Alert
 from src.utils.logger import get_logger
 from src.scrapers.base_scraper import ScraperPool
 from src.scrapers.classic_scraper import ClassicScraper
+from src.scrapers.pcarmarket_scraper import PcarmarketScraper
+from src.scrapers.rmsotheby_scraper import RmsothebyScraper
+from src.scrapers.elferspot_scraper import ElfersportScraper
+from src.scrapers.rennlist_scraper import RennlistScraper
 from src.filters.matcher import ListingMatcher
 from src.filters.requirements import RequirementChecker
 from src.alerts.webhook import WebhookAlerter
@@ -63,10 +67,13 @@ def scrape(platform: Optional[str], scrape_all: bool, dry_run: bool):
         return
 
     try:
-        # Initialize scrapers
+        # Initialize all 5 scrapers
         scrapers = [
             ClassicScraper(),
-            # TODO: Add other scrapers (PCARMARKET, RM Sotheby's, Elferspot, Rennlist)
+            PcarmarketScraper(),
+            RmsothebyScraper(),
+            ElfersportScraper(),
+            RennlistScraper(),
         ]
 
         pool = ScraperPool(scrapers)
