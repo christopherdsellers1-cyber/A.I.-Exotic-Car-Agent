@@ -1,4 +1,4 @@
-name: hunt
+name: Porschebot-Agent
 
 on:
   workflow_dispatch:
