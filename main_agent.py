@@ -1,18 +1,27 @@
 import json
+import os
 
-def load_brain():
-    with open('models_db.json', 'r') as f:
-        return json.load(f)
+def load_expert_data():
+    try:
+        with open('models_db.json', 'r') as f:
+            data = json.load(f)
+            print(f"✅ Success: Loaded {len(data)} models from Expert Brain.")
+            return data
+    except Exception as e:
+        print(f"❌ Error loading models_db.json: {e}")
+        return {}
 
-def evaluate_listing(listing):
-    brain = load_brain()
-    model_key = f"{listing['make']} {listing['model']}"
+def hunt():
+    print("🚀 Foundation Four Agent is initializing...")
+    expert_models = load_expert_data()
     
-    if model_key in brain:
-        rules = brain[model_key]
-        # logic: Is price below our Strike Price?
-        if listing['price'] <= rules['strike_price']:
-            # logic: Does the description have our 'Must-Have' shortcuts?
-            # (e.g., 'Manual', 'PTS', 'Carbon Buckets')
-            return True
-    return False
+    if not expert_models:
+        print("⚠️ No models found. Check if models_db.json exists in your repo.")
+        return
+
+    # This is where we will add the multi-site scrapers tomorrow
+    print("📡 Ready to scan: Bring a Trailer, Rennlist, and Forums.")
+    print("🎯 System Online. Standing by for deals.")
+
+if __name__ == "__main__":
+    hunt()
