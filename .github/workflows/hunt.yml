@@ -3,7 +3,10 @@ name: hunt
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 * * * *' # Runs every hour to catch fresh deals
+    - cron: '0 * * * *' # Runs every hour to find equity first
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true' # Silences deprecation warnings
 
 jobs:
   hunt:
@@ -23,6 +26,4 @@ jobs:
           pip install requests beautifulsoup4 pandas
 
       - name: Run Agent
-        env:
-          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
         run: python main_agent.py
