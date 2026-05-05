@@ -1,15 +1,18 @@
-def analyze_listing(listing, db):
-    model_name = listing['full_name']
-    if model_name in db:
-        target = db[model_name]
-        
-        # LOGIC 1: Price Check
-        price_gap = target['strike_price'] - listing['price']
-        
-        # LOGIC 2: Keyword Shortcut Check (from your HTML)
-        has_keywords = any(word.lower() in listing['description'].lower() 
-                          for word in target['shortcuts'].split())
+import json
 
-        if price_gap > 0 and has_keywords:
-            return f"🔥 DEAL ALERT: {model_name} is ${price_gap} BELOW strike price!"
-    return None
+def load_brain():
+    with open('models_db.json', 'r') as f:
+        return json.load(f)
+
+def evaluate_listing(listing):
+    brain = load_brain()
+    model_key = f"{listing['make']} {listing['model']}"
+    
+    if model_key in brain:
+        rules = brain[model_key]
+        # logic: Is price below our Strike Price?
+        if listing['price'] <= rules['strike_price']:
+            # logic: Does the description have our 'Must-Have' shortcuts?
+            # (e.g., 'Manual', 'PTS', 'Carbon Buckets')
+            return True
+    return False
