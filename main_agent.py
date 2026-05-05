@@ -1,37 +1,54 @@
 import json
-import os
+import requests
+from bs4 import BeautifulSoup
+import time
 
 def load_brain():
-    """Loads the 100+ models from your Expert Database."""
     try:
         with open('models_db.json', 'r') as f:
-            db = json.load(f)
-            print(f"✅ Success: Loaded {len(db)} models from Foundation Four Brain.")
-            return db
-    except FileNotFoundError:
-        print("❌ Error: models_db.json not found in repository.")
-        return {}
-    except json.JSONDecodeError:
-        print("❌ Error: models_db.json has a formatting error.")
+            return json.load(f)
+    except Exception as e:
+        print(f"❌ Brain Error: {e}")
         return {}
 
-def hunt():
+def scan_rennlist(expert_db):
+    print("👀 Scanning Rennlist Marketplace...")
+    # Target: Porsche 911 (991) and GT3 sections
+    url = "https://rennlist.com/forums/market/vehicles"
+    headers = {'User-Agent': 'Foundation-Four-Agent-1.0'}
+    
+    try:
+        response = requests.get(url, headers=headers)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        listings = soup.find_all('div', class_='thread-info') # Rennlist specific class
+
+        for item in listings:
+            title = item.find('a').text.strip()
+            price_str = item.find('span', class_='price').text.strip() if item.find('span', class_='price') else "0"
+            
+            # Clean price: remove $, commas
+            price = int(''.join(filter(str.isdigit, price_str))) if price_str != "0" else 0
+
+            # Match against your 103 models
+            for model, data in expert_db.items():
+                if model.split(' ')[0] in title and data['strike_price'] > 0:
+                    # Check for your "Shortcuts"
+                    matches = [s for s in data['shortcuts'].split('.') if s.strip().lower() in title.lower()]
+                    
+                    if price <= data['strike_price'] and price != 0:
+                        print(f"🎯 HIT: {title} | Price: ${price} | Target: ${data['strike_price']}")
+                        print(f"✨ Match on Shortcuts: {matches}")
+                        # Next step: Send Telegram notification
+    except Exception as e:
+        print(f"⚠️ Scraper encountered a minor hurdle: {e}")
+
+def main():
     print("🚀 Foundation Four Agent: Initializing Search...")
     expert_db = load_brain()
-    
-    if not expert_db:
-        return
-
-    # Diagnostic check for your top tier models
-    core_4 = ["Porsche 911 GT3 (991)", "Porsche Cayenne (3rd Gen)", "BMW X5 M (G05)", "Mercedes-AMG GT Series"]
-    
-    print("\n🔍 Monitoring Strike Zones for:")
-    for car in core_4:
-        if car in expert_db:
-            # Matches shortcuts from your exotic_car_agent_ultimate.html
-            print(f"  - {car}: Looking for {expert_db[car]['shortcuts']}")
-
-    print("\n🎯 System Online. Scanning Marketplaces...")
+    if expert_db:
+        print(f"✅ Success: Loaded {len(expert_db)} models.")
+        scan_rennlist(expert_db)
+        print("🎯 Scan Complete. Resting for next cycle...")
 
 if __name__ == "__main__":
-    hunt()
+    main()
