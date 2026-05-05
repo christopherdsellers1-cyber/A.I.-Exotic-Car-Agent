@@ -1,54 +1,30 @@
 import json
 import requests
 from bs4 import BeautifulSoup
-import time
 
-def load_brain():
-    try:
-        with open('models_db.json', 'r') as f:
-            return json.load(f)
-    except Exception as e:
-        print(f"❌ Brain Error: {e}")
-        return {}
+def evaluate_deal(listing, expert_db):
+    name = listing['title']
+    price = listing['price']
+    desc = listing['description'].lower()
 
-def scan_rennlist(expert_db):
-    print("👀 Scanning Rennlist Marketplace...")
-    # Target: Porsche 911 (991) and GT3 sections
-    url = "https://rennlist.com/forums/market/vehicles"
-    headers = {'User-Agent': 'Foundation-Four-Agent-1.0'}
-    
-    try:
-        response = requests.get(url, headers=headers)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        listings = soup.find_all('div', class_='thread-info') # Rennlist specific class
+    if name in expert_db:
+        target = expert_db[name]
+        market_price = target['strike_price']
+        
+        # 1. Price Arbitrage Check ($5k to $20k below market)
+        savings = market_price - price
+        if not (5000 <= savings <= 20000):
+            return False
 
-        for item in listings:
-            title = item.find('a').text.strip()
-            price_str = item.find('span', class_='price').text.strip() if item.find('span', class_='price') else "0"
-            
-            # Clean price: remove $, commas
-            price = int(''.join(filter(str.isdigit, price_str))) if price_str != "0" else 0
+        # 2. Clean Title & History Filter
+        red_flags = ['salvage', 'rebuilt', 'accident', 'damage', 'lemon']
+        if any(flag in desc for flag in red_flags):
+            return False
 
-            # Match against your 103 models
-            for model, data in expert_db.items():
-                if model.split(' ')[0] in title and data['strike_price'] > 0:
-                    # Check for your "Shortcuts"
-                    matches = [s for s in data['shortcuts'].split('.') if s.strip().lower() in title.lower()]
-                    
-                    if price <= data['strike_price'] and price != 0:
-                        print(f"🎯 HIT: {title} | Price: ${price} | Target: ${data['strike_price']}")
-                        print(f"✨ Match on Shortcuts: {matches}")
-                        # Next step: Send Telegram notification
-    except Exception as e:
-        print(f"⚠️ Scraper encountered a minor hurdle: {e}")
+        # 3. Required "Green Flags"
+        must_haves = ['service records', 'maintenance', 'clean title']
+        if not any(flag in desc for flag in must_haves):
+            return False
 
-def main():
-    print("🚀 Foundation Four Agent: Initializing Search...")
-    expert_db = load_brain()
-    if expert_db:
-        print(f"✅ Success: Loaded {len(expert_db)} models.")
-        scan_rennlist(expert_db)
-        print("🎯 Scan Complete. Resting for next cycle...")
-
-if __name__ == "__main__":
-    main()
+        return True
+    return False
