@@ -1,4 +1,3 @@
-import requests
 import time
 import random
 from abc import ABC, abstractmethod
@@ -7,6 +6,19 @@ from datetime import datetime
 import hashlib
 from src.parsers.common_schema import CommonListing, validate_listing
 from src.utils.logger import get_logger
+
+# Prefer curl-cffi for Chrome TLS impersonation (bypasses Cloudflare fingerprinting).
+# Falls back to standard requests if not installed.
+try:
+    from curl_cffi import requests
+    from curl_cffi.requests import Session as _BaseSession
+    _CURL_AVAILABLE = True
+    _IMPERSONATE = "chrome124"
+except ImportError:
+    import requests
+    _BaseSession = requests.Session
+    _CURL_AVAILABLE = False
+    _IMPERSONATE = None
 
 # Realistic browser user-agents (rotate to reduce fingerprinting)
 _USER_AGENTS = [
@@ -43,30 +55,35 @@ class BaseScraper(ABC):
         self.listings_processed = 0
         self.errors = []
 
-    def _create_session(self) -> requests.Session:
-        """Create requests session with realistic browser headers."""
-        session = requests.Session()
-        session.headers.update({
-            'User-Agent': random.choice(_USER_AGENTS),
-            'Accept': (
-                'text/html,application/xhtml+xml,application/xml;'
-                'q=0.9,image/avif,image/webp,image/apng,*/*;'
-                'q=0.8,application/signed-exchange;v=b3;q=0.7'
-            ),
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
-            'Sec-Fetch-Dest': 'document',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-Site': 'none',
-            'Sec-Fetch-User': '?1',
-            'Cache-Control': 'max-age=0',
-            'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-        })
-        return session
+    def _create_session(self):
+        """Create session with Chrome TLS impersonation when available."""
+        if _CURL_AVAILABLE:
+            # curl-cffi handles TLS fingerprint + all browser headers automatically
+            return requests.Session(impersonate=_IMPERSONATE)
+        else:
+            # Fallback: standard requests with realistic browser headers
+            session = requests.Session()
+            session.headers.update({
+                'User-Agent': random.choice(_USER_AGENTS),
+                'Accept': (
+                    'text/html,application/xhtml+xml,application/xml;'
+                    'q=0.9,image/avif,image/webp,image/apng,*/*;'
+                    'q=0.8,application/signed-exchange;v=b3;q=0.7'
+                ),
+                'Accept-Language': 'en-US,en;q=0.9',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Connection': 'keep-alive',
+                'Upgrade-Insecure-Requests': '1',
+                'Sec-Fetch-Dest': 'document',
+                'Sec-Fetch-Mode': 'navigate',
+                'Sec-Fetch-Site': 'none',
+                'Sec-Fetch-User': '?1',
+                'Cache-Control': 'max-age=0',
+                'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
+                'sec-ch-ua-mobile': '?0',
+                'sec-ch-ua-platform': '"Windows"',
+            })
+            return session
 
     def _human_delay(self, min_s: float = 1.0, max_s: float = 3.5):
         """Random delay between requests to avoid rate limiting."""
@@ -95,19 +112,22 @@ class BaseScraper(ABC):
         """
         for attempt in range(retries):
             try:
-                # Rotate user-agent on retries
                 if attempt > 0:
-                    self.session.headers.update({'User-Agent': random.choice(_USER_AGENTS)})
+                    if not _CURL_AVAILABLE:
+                        self.session.headers.update({'User-Agent': random.choice(_USER_AGENTS)})
                     self._human_delay(2.0, 5.0)
 
-                response = self.session.get(url, timeout=timeout)
+                kwargs = {'timeout': timeout}
+                if _CURL_AVAILABLE:
+                    kwargs['impersonate'] = _IMPERSONATE
+                response = self.session.get(url, **kwargs)
                 response.raise_for_status()
-                self._human_delay()  # Polite delay after successful fetch
+                self._human_delay()
                 return response.text
-            except requests.RequestException as e:
+            except Exception as e:
                 self.logger.warning(f"Fetch attempt {attempt + 1} failed for {url}: {e}")
                 if attempt < retries - 1:
-                    time.sleep(2 ** attempt)  # Exponential backoff
+                    time.sleep(2 ** attempt)
                 else:
                     self.logger.error(f"Failed to fetch {url} after {retries} attempts")
                     self.errors.append(f"Fetch error: {url}")
@@ -118,10 +138,14 @@ class BaseScraper(ABC):
         for attempt in range(retries):
             try:
                 if attempt > 0:
-                    self.session.headers.update({'User-Agent': random.choice(_USER_AGENTS)})
+                    if not _CURL_AVAILABLE:
+                        self.session.headers.update({'User-Agent': random.choice(_USER_AGENTS)})
                     self._human_delay(2.0, 5.0)
 
-                response = self.session.get(url, timeout=timeout)
+                kwargs = {'timeout': timeout}
+                if _CURL_AVAILABLE:
+                    kwargs['impersonate'] = _IMPERSONATE
+                response = self.session.get(url, **kwargs)
                 response.raise_for_status()
                 self._human_delay()
                 return response.json()
