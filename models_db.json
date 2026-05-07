@@ -85,7 +85,7 @@
   "Toyota GR Corolla (2023-2025)": {"shortcuts": "Circuit. AWD.", "strike_price": 52520},
   "Toyota Supra A91-MT (2023-2024)": {"shortcuts": "Manual. CU Later Gray.", "strike_price": 65650},
   "Jeep Rubicon 392 (2021-2024)": {"shortcuts": "Xtreme 35. V8.", "strike_price": 95950},
-  "Lamborghini Urus (2019-2022)": {"shortcuts": "PCCB. ADAS. 23 inch. B&O.", "strike_price": 217150},
+  "Lamborghini Urus (2019-2022) - Spec B": {"shortcuts": "PCCB. ADAS. 23 inch. B&O.", "strike_price": 217150},
   "Porsche 911 Turbo S (2021-2024)": {"shortcuts": "992. Exclusive Manufaktur.", "strike_price": 247450},
   "Aston Martin Vantage (2019-2024)": {"shortcuts": "Manual available.", "strike_price": 95950},
   "Ferrari 488 GTB (2016-2019)": {"shortcuts": "Shields. Goldrake seats.", "strike_price": 217150},
