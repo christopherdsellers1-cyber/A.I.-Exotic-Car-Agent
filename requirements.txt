@@ -11,3 +11,4 @@ Pillow==10.1.0
 pytz==2023.3
 aiohttp==3.9.1
 click==8.1.7
+sendgrid==6.10.0
